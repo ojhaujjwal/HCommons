@@ -72,7 +72,7 @@ class AbstractMapper
 
     protected function findRowByColumn($column, $value, $columns = null)
     {
-        $rowset = $this->findByColumn();
+        $rowset = $this->findByColumn($column, $value, $columns = null);
         $row = $rowset->current();
         return $row; 
     }
