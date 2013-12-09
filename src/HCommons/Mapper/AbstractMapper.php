@@ -77,12 +77,12 @@ class AbstractMapper
         return $row; 
     }
 
-    public function getRow($id, $columns = NULL)
+    public function getRow($id, $columns = null)
     {
         return $this->findById($id, $columns);    
     }
 
-    public function findById($id, $columns)
+    public function findById($id, $columns = null)
     {
         $id = (int) $id;
         return $this->findRowByColumn($this->idColumn, $id, $columns); 
