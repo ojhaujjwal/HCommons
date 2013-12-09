@@ -1,0 +1,27 @@
+{
+    "name": "ujjwal/h-commons",
+    "description": "A Zend Framework 2 module which contains some usefull abstract classes that can be used across multiple modules",
+    "type": "library",
+    "keywords": [
+        "zf2"
+    ],
+    "homepage": "https://github.com/ojhaujjwal/HCommons",
+    "authors": [
+        {
+            "name": "ojhaujjwal",
+            "email": "bring2uo@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.3",
+        "zendframework/zendframework": "2.*"
+    },
+    "autoload": {
+        "psr-0": {
+            "HCommons": "src/"
+        },
+        "classmap": [
+            "./Module.php"
+        ]
+    }
+}
