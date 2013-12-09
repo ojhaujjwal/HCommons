@@ -138,7 +138,7 @@ class AbstractMapper
         return $this->tableGateway->lastInsertValue;
     }
 
-    public function getSelectOptions($key = null, $value = null, \Closure $anonymous = null)
+    public function getSelectOptions(\Closure $anonymous = null, $key = null, $value = null)
     {
         if (!$key) {
             $key = $this->idColumn;
