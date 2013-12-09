@@ -59,7 +59,7 @@ abstract class AbstractEntity implements AbstractEntityInterface
         if (!$getter && !$setter) {
             throw new \BadMethodCallException('Unknown method,'. $name);
         }
-        $field_name = $this->getFieldName($method);
+        $field_name = $this->getFieldName($name);
         if ($setter) {
             $this->$field_name = $arguments[0];
         } else {
@@ -91,7 +91,6 @@ abstract class AbstractEntity implements AbstractEntityInterface
         } 
 
         throw new \Exception("Data, $name does not exists!");
-        return;
     }
 
     public function __set($name,$value)
