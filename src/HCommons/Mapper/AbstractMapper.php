@@ -79,13 +79,13 @@ class AbstractMapper
 
     public function getRow($id, $columns = NULL)
     {
-        $id = (int) $id;
-        return $this->findRowByColumn($this->idColumn, $id, $columns);      
+        return $this->findById($id, $columns);    
     }
 
-    public function findById($id)
+    public function findById($id, $columns)
     {
-        return $this->getRow($id);
+        $id = (int) $id;
+        return $this->findRowByColumn($this->idColumn, $id, $columns); 
     }
 
     public function getRowArray($id, $columns)
