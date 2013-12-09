@@ -51,11 +51,12 @@ abstract class AbstractPaginatorList
     public function getList(\Closure $anonummous = NULL)
     {
         $select = new Select($this->tableGateway->getTable());
+        $fields = $this->getFields();
         if ($anonummous) {
             $anonummous($select);
         } elseif(method_exists($this, "UseSelect")) {
             $this->UseSelect($select);
-        } elseif (!empty($this->getFields())) {
+        } elseif (!empty($fields)) {
             $select->columns($this->getFields());
         }
         // create a new pagination adapter object
