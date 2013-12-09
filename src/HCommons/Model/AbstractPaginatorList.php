@@ -70,7 +70,6 @@ abstract class AbstractPaginatorList
 
     protected function getPaginationAdapter($select)
     {
-        // create a new pagination adapter object
         if ($this->deriveResultSetPrototype) {
             $paginatorAdapter = new DbSelect(
                 $select,
