@@ -37,7 +37,7 @@ class EnvironmentConfigManager
 
     public function isDevelopment()
     {
-        return strtolower(self::$env) == strtolower(self::ENV_DEVELOPMENT);
+        return strtolower(self::getEnv()) == strtolower(self::ENV_DEVELOPMENT);
     }
 
 }
