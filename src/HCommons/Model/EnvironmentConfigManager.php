@@ -9,6 +9,8 @@ class EnvironmentConfigManager
     const ENV_DEVELOPMENT = "development";
 
     protected static $env;
+    
+    protected static $isDevelopment = null;
 
     protected static $allowedEnviroments = array(
         self::ENV_PRODUCTION,
@@ -37,7 +39,11 @@ class EnvironmentConfigManager
 
     public static function isDevelopment()
     {
-        return strtolower(self::getEnv()) == strtolower(self::ENV_DEVELOPMENT);
+        if (self::$isDevelopment === null) {
+            self::$isDevelopment = (self::getEnv() == self::ENV_DEVELOPMENT);
+        }
+        return self::$isDevelopment;
+        //return strtolower(self::getEnv()) == strtolower(self::ENV_DEVELOPMENT);
     }
 
 }
