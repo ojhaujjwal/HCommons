@@ -15,7 +15,7 @@ class EnvironmentConfigManager
         self::ENV_DEVELOPMENT
     );
 
-    public function getEnv()
+    public static function getEnv()
     {
         if (!self::$env) {
             $env = getenv('APP_ENV');
@@ -30,12 +30,12 @@ class EnvironmentConfigManager
         return self::$env;
     }
 
-    public function isProduction()
+    public static function isProduction()
     {
         return !self::isDevelopment();
     }
 
-    public function isDevelopment()
+    public static function isDevelopment()
     {
         return strtolower(self::getEnv()) == strtolower(self::ENV_DEVELOPMENT);
     }
