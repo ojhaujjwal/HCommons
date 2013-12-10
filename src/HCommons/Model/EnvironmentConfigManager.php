@@ -8,36 +8,36 @@ class EnvironmentConfigManager
 
     const ENV_DEVELOPMENT = "development";
 
-    protected $env;
+    protected static $env;
 
-    protected $allowedEnviroments = array(
+    protected static $allowedEnviroments = array(
         self::ENV_PRODUCTION,
         self::ENV_DEVELOPMENT
     );
 
     public function getEnv()
     {
-        if (!$this->env) {
+        if (!self::$env) {
             $env = getenv('APP_ENV');
             if (!$env) {
                 $env = getenv('APPLICATION_ENV') ?: self::ENV_PRODUCTION;
             }
-            if (!in_array($env, $this->allowedEnviroments)) {
+            if (!in_array($env, self::$allowedEnviroments)) {
                 throw new \Exception("Unknown application Environment variable");
             }
-            $this->env = $env;            
+            self::$env = $env;            
         }
-        return $this->env;
+        return self::$env;
     }
 
     public function isProduction()
     {
-        return !$this->isDevelopment();
+        return !self::isDevelopment();
     }
 
     public function isDevelopment()
     {
-        return strtolower($this->env) == strtolower(self::ENV_DEVELOPMENT);
+        return strtolower(self::$env) == strtolower(self::ENV_DEVELOPMENT);
     }
 
 }
