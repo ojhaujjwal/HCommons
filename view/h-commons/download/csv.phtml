@@ -1,7 +1,7 @@
 <?php
 $fh = @fopen( 'php://output', 'w' );
 foreach ($results as $result) {
-    fputcsv($fh, $result);
+    fputcsv($fh, (array) $result);
 }
 fclose($fh);
 
