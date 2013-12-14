@@ -1,5 +1,9 @@
 <?php
+    
 namespace HCommons;
+
+use HCommons\View\Renderer\CsvRenderer;
+use HCommons\View\Strategy\CsvStrategy;
 
 class Module
 {
@@ -23,7 +27,9 @@ class Module
     {
         return array(
             'factories' => array(
-                'HCommonsDbAdapter' => 'Zend\Db\Adapter\AdapterServiceFactory',            
+                'ViewCsvStrategy' => function($sm){
+                    return new CsvStrategy($sm->get('view_manager')->getRenderer());
+                },
             )
         );
     }
