@@ -116,18 +116,21 @@ class AbstractMapper
         $this->tableGateway->delete(array($this->idColumn => $id));
     }
 
-    public function saveData($ArrayObjectPrototype)
+    public function saveData($entity)
     {
-        if (is_object($ArrayObjectPrototype) && $ArrayObjectPrototype instanceof AbstractEntityInterface) {
-            $data = $ArrayObjectPrototype->getArrayCopy();    
-        } elseif(is_array($ArrayObjectPrototype)) {
-            $data = $ArrayObjectPrototype;
+        if (is_object($entity) && $entity instanceof AbstractEntityInterface) {
+            $data = $entity->getArrayCopy();    
+        } elseif(is_array($entity)) {
+            $data = $entity;
         } else {
             throw new \InvalidArgumentException('Exected parameter 1 to be array or instance of AbstractEntityInterface! ');
         }
         $id = $data[$this->idColumn];
         if ($id == 0) {
              $this->tableGateway->insert($data);
+             if($entity instanceof AbstractEntityInterface && $this->idColumn) {
+                 $entity->{$this->idColumn} = $this->getInsertId();
+             }
         } else {
             $this->tableGateway->update($data, array($this->idColumn => $id));
         }
