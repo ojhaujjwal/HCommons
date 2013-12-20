@@ -37,4 +37,3 @@ There are some abstract classes that can be used across multiple modules. Some o
 #### Useful Classes
 * [DbResultSetToArray](https://github.com/ojhaujjwal/HCommons/blob/master/src/HCommons/Model/DbResultSetToArray.php)
 * [EnvironmentConfigManager](https://github.com/ojhaujjwal/HCommons/blob/master/src/HCommons/Model/EnvironmentConfigManager.php)
-* [ServiceLocatorAwareTrait](https://github.com/ojhaujjwal/HCommons/blob/master/src/HCommons/Model/ServiceLocatorAwareTrait.php)
