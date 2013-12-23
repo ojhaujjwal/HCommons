@@ -14,6 +14,11 @@ class AbstractMapper
     protected $idColumn = "id";
 
     protected $nameColumn = 'name';
+    
+    public function __construct(TableGateway $tableGateway)
+    {
+        $this->setTableGateway($tableGateway);
+    }
 
     public function setTableGateway(TableGateway $tableGateway)
     {
