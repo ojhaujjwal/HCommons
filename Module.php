@@ -4,6 +4,7 @@ namespace HCommons;
 
 use HCommons\View\Renderer\CsvRenderer;
 use HCommons\View\Strategy\CsvStrategy;
+use HCommons\View\Strategy\ImageStrategy;
 
 class Module
 {
@@ -30,6 +31,9 @@ class Module
                 'ViewCsvStrategy' => function($sm){
                     return new CsvStrategy($sm->get('view_manager')->getRenderer());
                 },
+                'HCommons\View\ImageStrategy' => function ($sm) {
+                    return new ImageStrategy($sm->get('WebinoImageThumb'));
+                }
             )
         );
     }

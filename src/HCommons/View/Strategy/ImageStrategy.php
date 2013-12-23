@@ -3,12 +3,12 @@
 namespace HCommons\View\Strategy;
 
 use HCommons\View\Model;
-use Zend\View\Renderer\PhpRenderer;
 use Zend\EventManager\EventManagerInterface;
 use Zend\EventManager\ListenerAggregateInterface;
 use Zend\View\ViewEvent;
+use WebinoImageThumb\WebinoImageThumb;
 
-class CsvStrategy implements ListenerAggregateInterface
+class ImageStrategy implements ListenerAggregateInterface
 {
     /**
      * @var \Zend\Stdlib\CallbackHandler[]
@@ -16,30 +16,30 @@ class CsvStrategy implements ListenerAggregateInterface
     protected $listeners = array();
 
     /**
-     * @var PhpRenderer
+     * @var WebinoImageThumb
      */
-    protected $renderer;
+    protected $webinoImageThumb;
 
     /**
      * Constructor
      *
-     * @param  PhpRenderer $renderer
+     * @param  WebinoImageThumb $renderer
      * @return void
      */
-    public function __construct(PhpRenderer $renderer)
+    public function __construct(WebinoImageThumb $webinoImageThumb)
     {
-        $this->renderer = $renderer;
+        $this->webinoImageThumb = $webinoImageThumb;
     }
 
 
     /**
      * Retrieve the composed renderer
      *
-     * @return PhpRenderer
+     * @return WebinoImageThumb
      */
-    public function getRenderer()
+    public function getWebinoImageThumb()
     {
-        return $this->renderer;
+        return $this->webinoImageThumb;
     }
     
     /**
@@ -51,11 +51,10 @@ class CsvStrategy implements ListenerAggregateInterface
      */
     public function attach(EventManagerInterface $events, $priority = 1)
     {
-        $this->listeners[] = $events->attach(ViewEvent::EVENT_RENDERER, array($this, 'selectRenderer'), $priority);
+        $this->listeners[] = $events->attach(ViewEvent::EVENT_RENDERER, array($this, 'passPhpThumb'), $priority);
         $this->listeners[] = $events->attach(ViewEvent::EVENT_RESPONSE, array($this, 'injectResponse'), $priority);
     }
-    
-    
+
     /**
      * Detach aggregate listeners from the specified event manager
      *
@@ -70,28 +69,9 @@ class CsvStrategy implements ListenerAggregateInterface
             }
         }
     }
-    
-    
-    /**
-     * Detect if we should use the PhpRenderer based on model type
-     *
-     * @param  ViewEvent $e
-     * @return null|PhpRenderer
-     */
-    public function selectRenderer(ViewEvent $e)
-    {
-        $model = $e->getModel();
-        
-        if ($model instanceof Model\CsvModel) {
-            return $this->renderer;
-        }
 
-        return;
-    }
-    
-    
     /**
-     * Inject the response with the Csv payload and appropriate Content-Type header
+     * Inject the response with the Image payload and appropriate Content-Type header
      *
      * @param  ViewEvent $e
      * @return void
@@ -100,31 +80,32 @@ class CsvStrategy implements ListenerAggregateInterface
     {
         $model = $e->getModel();
         
-        if (!$model instanceof Model\CsvModel) {
+        if (!$model instanceof Model\ImageModel) {
             return ;
         }
-
+        /*
         $result = $e->getResult();
 
         if (!is_string($result)) {
             return;
         }
-        
         $response = $e->getResponse();
+        $response->setContent($result);*/
+        $headers->addHeaderLine('Content-Type', 'image/png');
+                    
+    }
 
-        $headers = $response->getHeaders();
-        $headers->addHeaderLine('Content-Type', 'text/csv')
-            ->addHeaderLine('Accept-Ranges', 'bytes')
-            ->addHeaderLine('Content-Length', strlen($result));
-        $response->setContent($result);
+    public function passPhpThumb(ViewEvent $e)
+    {
+        $model = $e->getModel();
         
-
-        $fileName = $e->getModel()->getFileName();
-        if (substr($fileName, -4) != '.csv') {
-            $fileName .= '.csv';
+        if (!$model instanceof Model\ImageModel) {
+            return ;
         }
-        // force download
-        $headers->addHeaderLine('Content-Disposition', "attachment; filename=$fileName.csv");       
-
-    }                    
+        if ($model->getFileName()) {
+            $model->setPhpThumb($this->getWebinoImageThumb()->create($model->getFileName()));      
+        }
+        
+    }
+        
 }
