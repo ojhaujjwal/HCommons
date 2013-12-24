@@ -26,7 +26,7 @@ class ImageStrategy implements ListenerAggregateInterface
      * @param  WebinoImageThumb $renderer
      * @return void
      */
-    public function __construct(WebinoImageThumb $webinoImageThumb)
+    public function setWebinoImageThumb(WebinoImageThumb $webinoImageThumb)
     {
         $this->webinoImageThumb = $webinoImageThumb;
     }

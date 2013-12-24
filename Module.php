@@ -32,7 +32,11 @@ class Module
                     return new CsvStrategy($sm->get('view_manager')->getRenderer());
                 },
                 'HCommons\View\ImageStrategy' => function ($sm) {
-                    return new ImageStrategy($sm->get('WebinoImageThumb'));
+                    $strategy =  new ImageStrategy($sm->get('WebinoImageThumb'));
+                    if ($sm->has('WebinoImageThumb')) {
+                        $strategy->setWebinoImageThumb($sm->get('WebinoImageThumb'));
+                    }
+                    return $strategy;
                 }
             )
         );
