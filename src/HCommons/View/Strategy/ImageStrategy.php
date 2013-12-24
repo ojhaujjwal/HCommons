@@ -83,16 +83,9 @@ class ImageStrategy implements ListenerAggregateInterface
         if (!$model instanceof Model\ImageModel) {
             return ;
         }
-        /*
-        $result = $e->getResult();
-
-        if (!is_string($result)) {
-            return;
-        }
         $response = $e->getResponse();
-        $response->setContent($result);*/
+        $headers = $response->getHeaders();
         $headers->addHeaderLine('Content-Type', 'image/png');
-                    
     }
 
     public function passPhpThumb(ViewEvent $e)
