@@ -26,7 +26,7 @@ For example, from your controller:
 ```
 Where, `$data` is a class implementing `Traversable` or an array whose elements are rows of CSV file!
 
-#### Image Strategy to output image with [WebinoImageThumb](https://github.com/webino/WebinoImageThumb) for installation process
+#### Image Strategy to output image with [WebinoImageThumb](https://github.com/webino/WebinoImageThumb)
 `Note`: To use this you must install `WebinoImageThumb`. See [this link](https://github.com/webino/WebinoImageThumb)
 
 For example, from your controller:
