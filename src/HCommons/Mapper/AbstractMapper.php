@@ -15,9 +15,12 @@ class AbstractMapper
 
     protected $nameColumn = 'name';
     
-    public function __construct(TableGateway $tableGateway)
+    public function __construct(TableGateway $tableGateway = null)
     {
-        $this->setTableGateway($tableGateway);
+        if ($tableGateway !== null) {
+            $this->setTableGateway($tableGateway);
+        }
+        
     }
 
     public function setTableGateway(TableGateway $tableGateway)
@@ -77,7 +80,7 @@ class AbstractMapper
 
     protected function findRowByColumn($column, $value, $columns = null)
     {
-        $rowset = $this->findByColumn($column, $value, $columns = null);
+        $rowset = $this->findByColumn($column, $value, $columns);
         $row = $rowset->current();
         return $row; 
     }
