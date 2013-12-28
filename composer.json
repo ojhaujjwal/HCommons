@@ -16,6 +16,9 @@
         "php": ">=5.3.3",
         "zendframework/zendframework": "2.*"
     },
+    "suggest": {
+        "webino/webino-image-thumb": "For Image Manipulation"
+    },
     "autoload": {
         "psr-0": {
             "HCommons": "src/"

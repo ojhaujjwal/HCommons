@@ -1,0 +1,20 @@
+<?php
+$oldResults = $results;
+$header = (array) $header;
+
+$newHeader = array();
+foreach ($fieldsOrder as $field) {
+    $newHeader[] = $header[$field];
+}
+$newResults[] = $newHeader;
+
+foreach ($results as $result) {
+    $row = array();
+    foreach ($fieldsOrder as $field) {
+        $row[] = $result[$field];
+    }
+    $newResults[] = $row;
+}
+
+$results = $newResults;
+include __DIR__."/csv.phtml";

@@ -9,7 +9,7 @@ use Zend\Stdlib\ArrayUtils;
 class CsvModel extends ViewModel
 {
 
-    const DEFAULT_FILENAME = "export.csv";
+    const DEFAULT_FILENAME = "export";
 
     /**
      * Csv probably won't need to be captured into a 

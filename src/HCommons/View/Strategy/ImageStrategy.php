@@ -71,7 +71,7 @@ class ImageStrategy implements ListenerAggregateInterface
     }
 
     /**
-     * Inject the response with the Image payload and appropriate Content-Type header
+     * Inject the response with the Image payload and add appropriate Content-Type header
      *
      * @param  ViewEvent $e
      * @return void
