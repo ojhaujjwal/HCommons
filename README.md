@@ -12,8 +12,6 @@ This module also contains some useful abstract classes and some useful snippets 
 ##Features
 * Csv Render Strategy to export data to csv format
 * Image Strategy to output image with [WebinoImageThumb](https://github.com/webino/WebinoImageThumb)
-* Useful Abstract Classes
-* Useful Classes
 
 #### Csv Render Strategy to export data to csv format.
 Exporting to csv format was never easy. But, now it is!
@@ -43,18 +41,3 @@ For example, from your controller:
     $image->setPhpThumb($thumb);
     return $image;
 ```
-
-
-#### Usefull Abstract Classes
-There are some abstract classes that can be used across multiple modules. Some of them are listed below:
-
-* [AbstractEntity](https://github.com/ojhaujjwal/HCommons/blob/master/src/HCommons/Entity/AbstractEntity.php)
-* [AbstractMapper](https://github.com/ojhaujjwal/HCommons/blob/master/src/HCommons/Mapper/AbstractMapper.php)
-* [AbstractPaginatorList](https://github.com/ojhaujjwal/HCommons/blob/master/src/HCommons/Model/AbstractPaginatorList.php)
-
-`Note`: The classes work atleast for me. Please dont be disappointed if they are not useful to you. These work only in general classes and donot offer a lot of flexibility! 
-
-
-#### Useful Classes
-* [DbResultSetToArray](https://github.com/ojhaujjwal/HCommons/blob/master/src/HCommons/Model/DbResultSetToArray.php)
-* [EnvironmentConfigManager](https://github.com/ojhaujjwal/HCommons/blob/master/src/HCommons/Model/EnvironmentConfigManager.php)
