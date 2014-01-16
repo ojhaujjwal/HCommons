@@ -82,15 +82,19 @@ abstract class AbstractEntity implements AbstractEntityInterface
         //}    
     }
 
-    public function __get($name)
+    public function __get($field)
     {
-        if (array_key_exists($name, $this->data)) {
-            return $this->data[$name];
+        if(!in_array($field, $this->getFields())) {
+            throw new Exception\InvalidColumnException(sprintf("Column, %s does not exists!", $field));
+        }
+
+        if (array_key_exists($field, $this->data)) {
+            return $this->data[$field];
         } elseif (array_key_exists($name, $this->exData)) {
             return $this->exData[$name];
         } 
 
-        throw new \Exception("Data, $name does not exists!");
+        return null;         
     }
 
     public function __set($name,$value)
