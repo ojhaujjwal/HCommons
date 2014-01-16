@@ -90,8 +90,8 @@ abstract class AbstractEntity implements AbstractEntityInterface
 
         if (array_key_exists($field, $this->data)) {
             return $this->data[$field];
-        } elseif (array_key_exists($name, $this->exData)) {
-            return $this->exData[$name];
+        } elseif (array_key_exists($field, $this->exData)) {
+            return $this->exData[$field];
         } 
 
         return null;         
