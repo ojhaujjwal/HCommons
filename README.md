@@ -4,6 +4,8 @@ HCommons
 A Zend Framework 2 module which contains CSV render strategy to export data to csv format and image strategy to output image.
 This module also contains some useful abstract classes and some useful snippets that can be used across multiple modules.
 
+## This module is deprecated
+
 ##Installation
 * Add `"ujjwal/h-commons": "dev-master"` to your composer.json and run `php composer.phar update`
 * Enable the module in `config/application.config.php`
